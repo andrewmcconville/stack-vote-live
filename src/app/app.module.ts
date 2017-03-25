@@ -4,17 +4,25 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { GuessListComponent } from './guess-list/guess-list.component';
+import { QuestionDetailComponent } from './question-detail/question-detail.component';
+import { StackListComponent } from './stack-list/stack-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GuessListComponent,
+    QuestionDetailComponent,
+    StackListComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

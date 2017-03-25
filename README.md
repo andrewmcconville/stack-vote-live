@@ -1,3 +1,3 @@
 # stack-vote-live
 Vote on which Stack Overflow answer is the correct answer
-This project is an adventure in Angular 2, Firebase and RxJS Observables 
+Testing out Angular 4, Firebase, AngularFire 2 and RxJS Observables 

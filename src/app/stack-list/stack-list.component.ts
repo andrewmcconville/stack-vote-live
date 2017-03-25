@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StackService } from '../services/stack.service';
+import { QuestionService } from '../services/question.service';
 
 @Component({
     moduleId: module.id,
@@ -9,11 +9,11 @@ import { StackService } from '../services/stack.service';
 export class StackListComponent implements OnInit {
     questions: any;
     
-    constructor(private stackService: StackService) {
+    constructor(private questionService: QuestionService) {
 
     }
 
     ngOnInit() {
-        this.questions = this.stackService.getQuestionsByNewest();
+        this.questions = this.questionService.getNewest();
     }
 }

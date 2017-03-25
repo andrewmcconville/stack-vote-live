@@ -1,1 +1,8 @@
-stack list
+<div>
+    <p>stack list</p>
+    <ul>
+        <li *ngFor="let question of questions | async">
+            {{question.title}}
+        </li>
+    </ul>
+</div>

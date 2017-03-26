@@ -14,19 +14,26 @@ export class GuessListComponent implements OnInit {
     constructor(private questionService: QuestionService) { }
 
     ngOnInit() {
+        this.getQuestions();
+    }
+
+    private getQuestions() {
         //subscribe to firebase questions
         this.questionService.getFirebaseQuestions().subscribe((fbQuestions: Array<FbQuestion>) => {
             //map the firebase question id's to one big string seperated by a ; to query stack
             let stackQuery: string = fbQuestions.map((fbQuestion: FbQuestion) => fbQuestion.questionId).join(';');
-            //subscribe to stack questions using the joined stackQuery string
-            this.questionService.getBatchStackQuestionsByIds(stackQuery).subscribe((soQuestions: Array<SoQuestion>) => {
-                //merge the stack and firebase questions for the UI 
-                this.guessList = this.mergeQuestions(fbQuestions, soQuestions)
-            });
+            //if there are guesses
+            if(stackQuery) {
+                //subscribe to stack questions using the joined stackQuery string
+                this.questionService.getBatchStackQuestionsByIds(stackQuery).subscribe((soQuestions: Array<SoQuestion>) => {
+                    //merge the stack and firebase questions for the UI 
+                    this.guessList = this.mergeQuestions(fbQuestions, soQuestions)
+                });
+            }
         });
     }
 
-    mergeQuestions(fbQuestions: Array<FbQuestion>, soQuestions: Array<SoQuestion>): Array<SoQuestion> {
+    private mergeQuestions(fbQuestions: Array<FbQuestion>, soQuestions: Array<SoQuestion>): Array<SoQuestion> {
         //for each stack question
         soQuestions.forEach((soQuestion: SoQuestion) => {
             //compare it to each firebase question
@@ -43,7 +50,8 @@ export class GuessListComponent implements OnInit {
         return soQuestions
     }
 
-    deleteAllGuesses() {
+    private deleteAllGuesses() {
         this.questionService.deleteAllGuesses();
+        this.guessList = null;
     }
 }

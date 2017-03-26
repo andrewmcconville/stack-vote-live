@@ -1,5 +1,5 @@
 <div>
-    <p>guesses</p>
+    <p>guesses <button (click)="deleteAllGuesses()">delete all</button></p>
     <ul>
         <li *ngFor="let question of guessList">
             {{question.title}}: {{question.totalGuesses}}

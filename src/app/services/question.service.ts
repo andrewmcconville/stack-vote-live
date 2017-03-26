@@ -16,10 +16,28 @@ export class QuestionService {
         private http: Http
     ) { }
 
-    /* Firebase Gets */
+    /* Firebase */
 
     getFirebaseQuestions(): FirebaseListObservable<any[]> {
-        return this.af.database.list('/nest');
+        return this.af.database.list('/guesses');
+    }
+
+    setFirebaseQuestion(questionId: number, answerIds: number): void {
+        this.af.database.list('/guesses').push({
+            questionId: questionId,
+            answerIds: [answerIds],
+            answerCounts: [1]
+        });
+    }
+
+    updateFirebaseQuestion(key: string, questionId: number): void {
+        this.af.database.list('/guesses').update(key, {
+            questionId: questionId
+        });
+    }
+
+    deleteAllGuesses(): void {
+        this.af.database.list('/guesses').remove()
     }
 
     /* Stack Gets */

@@ -10,13 +10,16 @@ export class QuestionDetailComponent implements OnInit {
     q: {};
     questionId: number = 6414384;
 
-    constructor(private questionService: QuestionService) {
-
-    }
+    constructor(private questionService: QuestionService) { }
 
     ngOnInit() {
         this.questionService.getFullStackQuestionById(this.questionId).subscribe((qAndA) => {
             this.q = qAndA[0];
         });
+    }
+
+    guess(question_id: number, answer_id: number) {
+        this.questionService.setFirebaseQuestion(question_id, answer_id);
+        console.log(`q: ${question_id} a: ${answer_id}`)
     }
 }

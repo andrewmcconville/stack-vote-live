@@ -42,4 +42,8 @@ export class GuessListComponent implements OnInit {
         });
         return soQuestions
     }
+
+    deleteAllGuesses() {
+        this.questionService.deleteAllGuesses();
+    }
 }

@@ -11,9 +11,9 @@
     <!--<pre>{{q?.body}}</pre>-->
     <div>answers: {{q?.answer_count}}</div>
     <ul>
-        <li *ngFor="let answer of q?.answers">
-            <div>{{answer?.answer_id}}</div>
-            <div>{{answer?.up_vote_count}}</div>
+        <li *ngFor="let a of q?.answers">
+            <div>{{a?.answer_id}}</div>
+            <div>{{a?.up_vote_count}} <button (click)="guess(q.question_id, a.answer_id)">vote</button></div>
             <!--<pre>{{answer?.body}}</pre>-->
         </li>
     </ul>

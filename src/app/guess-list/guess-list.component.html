@@ -1,8 +1,8 @@
 <div>
     <p>stack batch</p>
     <ul>
-        <li *ngFor="let question of batch | async">
-            {{question.title}}
+        <li *ngFor="let question of batch">
+            {{question.title}}: {{question.totalGuesses}}
         </li>
     </ul>
 </div>

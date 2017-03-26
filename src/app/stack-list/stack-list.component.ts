@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionService } from '../services/question.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     moduleId: module.id,
@@ -7,7 +8,7 @@ import { QuestionService } from '../services/question.service';
     templateUrl: 'stack-list.component.html'
 })
 export class StackListComponent implements OnInit {
-    questions: any;
+    questions: Observable<any>;
     
     constructor(private questionService: QuestionService) {
 

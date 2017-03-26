@@ -5,9 +5,12 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
+import { SoQuestion } from '../questions-types/soquestion';
+import { FbQuestion } from '../questions-types/fbquestion';
+
 @Injectable()
 export class QuestionService {
-    mockStack: boolean = true;
+    useStackOverflow: boolean = false;
 
     constructor(
         private af: AngularFire,
@@ -18,31 +21,31 @@ export class QuestionService {
         return this.af.database.list('/nest');
     }
 
-    getBatchStackQuestionsByIds(q: string): Observable<any[]> {
+    getBatchStackQuestionsByIds(q: string): Observable<SoQuestion[]> {
         return this.http
             .get(this.getBatchQuery(q))
             .map((response: Response) => response.json().items);
     }
 
-    getNewestStackQuestions(): Observable<any[]> {
+    getNewestStackQuestions(): Observable<SoQuestion[]> {
         return this.http
             .get(this.getNewestQuery())
             .map((response: Response) => response.json().items);
     }
 
     getBatchQuery(q: string): string {
-        if(this.mockStack) {
-            return '/src/app/services/stack-batch-mock.json'
-        } else {
+        if(this.useStackOverflow) {
             return `http://api.stackexchange.com/2.2/questions/${q}?order=desc&sort=activity&site=stackoverflow&key=96KYrlU5uoaBkT4Y9Fc1rw((`
+        } else {
+            return '/src/app/services/stack-batch-mock.json'
         }
     }
 
     getNewestQuery(): string {
-        if(this.mockStack) {
-            return '/src/app/services/stack-newest-mock.json'
-        } else {
+        if(this.useStackOverflow) {
             return 'http://api.stackexchange.com/2.2/search/advanced?page=1&pagesize=10&order=desc&sort=activity&accepted=True&answers=2&site=stackoverflow&filter=!*1SgQGDQ)5Y.lIuepUj09VlZ4y)max.5CM-rlGOA2&key=96KYrlU5uoaBkT4Y9Fc1rw(('
+        } else {
+            return '/src/app/services/stack-newest-mock.json'
         }
     }
 }

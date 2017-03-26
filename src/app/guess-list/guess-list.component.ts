@@ -7,13 +7,16 @@ import { QuestionService } from '../services/question.service';
     templateUrl: 'guess-list.component.html'
 })
 export class GuessListComponent implements OnInit {
-    questions: any;
+    batch: any;
 
     constructor(private questionService: QuestionService) {
 
     }
 
     ngOnInit() {
-        this.questions = this.questionService.getGuesses();
+        this.questionService.getFirebaseQuestions().subscribe(questions => {
+            let stackQuery: string = questions.map((x: any) => x.questionId).join(';');
+            this.batch = this.questionService.getBatchStackQuestionsByIds(stackQuery);
+        });
     }
 }

@@ -14,6 +14,6 @@ export class StackListComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.questions = this.questionService.getNewest();
+        this.questions = this.questionService.getNewestStackQuestions();
     }
 }

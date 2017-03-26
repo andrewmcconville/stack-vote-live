@@ -1,17 +1,8 @@
 <div>
-    <p>stack batch</p>
+    <p>guesses</p>
     <ul>
         <li *ngFor="let question of guessList">
             {{question.title}}: {{question.totalGuesses}}
         </li>
     </ul>
 </div>
-
-<!--<div>
-    <p>firebase</p>
-    <ul>
-        <li *ngFor="let question of firebase | async">
-            {{question.questionId}}
-        </li>
-    </ul>
-</div>-->

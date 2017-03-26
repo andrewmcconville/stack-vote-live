@@ -10,9 +10,7 @@ import { Observable } from 'rxjs/Observable';
 export class StackListComponent implements OnInit {
     questions: Observable<any>;
     
-    constructor(private questionService: QuestionService) {
-
-    }
+    constructor(private questionService: QuestionService) { }
 
     ngOnInit() {
         this.questions = this.questionService.getNewestStackQuestions();

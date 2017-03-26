@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionService } from '../services/question.service';
-import { SoQuestion } from '../questions-types/soquestion';
-import { FbQuestion } from '../questions-types/fbquestion';
+import { SoQuestion } from '../questions-classes/soquestion';
+import { FbQuestion } from '../questions-classes/fbquestion';
 
 @Component({
     moduleId: module.id,
@@ -32,7 +32,7 @@ export class GuessListComponent implements OnInit {
             //compare it to each firebase question
             fbQuestions.forEach((fbQuestion: FbQuestion) => {
                 //if the question ids match
-                if(soQuestion.question_id == fbQuestion.questionId) {
+                if(soQuestion.question_id === fbQuestion.questionId) {
                     //sum up the count of all the firebase answers and put it on stack questions totalGuesses
                     soQuestion.totalGuesses = fbQuestion.answerCounts.reduce((a: number, b: number) => {
                         return a + b

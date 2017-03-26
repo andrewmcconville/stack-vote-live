@@ -4,8 +4,8 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
-import { SoQuestion } from '../questions-types/soquestion';
-import { FbQuestion } from '../questions-types/fbquestion';
+import { SoQuestion } from '../questions-classes/soquestion';
+import { FbQuestion } from '../questions-classes/fbquestion';
 
 @Injectable()
 export class QuestionService {
@@ -16,9 +16,13 @@ export class QuestionService {
         private http: Http
     ) { }
 
+    /* Firebase Gets */
+
     getFirebaseQuestions(): FirebaseListObservable<any[]> {
         return this.af.database.list('/nest');
     }
+
+    /* Stack Gets */
 
     getNewestStackQuestions(): Observable<SoQuestion[]> {
         return this.http
@@ -32,7 +36,15 @@ export class QuestionService {
             .map((response: Response) => response.json().items);
     }
 
-    getNewestQuery(): string {
+    getFullStackQuestionById(queryId: number): Observable<SoQuestion[]> {
+        return this.http
+            .get(this.getFullQuery(queryId))
+            .map((response: Response) => response.json().items);
+    }
+
+    /* Stack Queries */
+
+    private getNewestQuery(): string {
         if(this.useStackOverflow) {
             return 'http://api.stackexchange.com/2.2/search/advanced?page=1&pagesize=10&order=desc&sort=activity&accepted=True&answers=2&site=stackoverflow&filter=!*7PYVvGlC3ioZ2YD.1t9er8M4dtr'
         } else {
@@ -40,11 +52,19 @@ export class QuestionService {
         }
     }
 
-    getBatchQuery(queryIds: string): string {
+    private getBatchQuery(queryIds: string): string {
         if(this.useStackOverflow) {
             return `http://api.stackexchange.com/2.2/questions/${queryIds}?order=desc&sort=activity&site=stackoverflow&filter=!*7PYVvGlC3ioZ2YD.1t9er8M4dtr`
         } else {
             return '/src/app/services/stack-batch-mock.json'
+        }
+    }
+
+    private getFullQuery(queryId: number): string {
+        if(this.useStackOverflow) {
+            return `http://api.stackexchange.com//2.2/questions/${queryId}?order=desc&sort=activity&site=stackoverflow&filter=!E-NOqiG71BN9ADWkx7_t.c9XpMYubL-MTk3mCi`
+        } else {
+            return '/src/app/services/stack-full-mock.json'
         }
     }
 }

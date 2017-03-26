@@ -1,1 +1,20 @@
-question detail
+<div>
+    <p>detail</p>
+
+    <p>{{q?.title}} <a href="{{q?.link}}" target="_blank">link</a></p>
+    <div>
+        by
+        <a href="{{q?.owner.link}}" target="_blank">{{q?.owner.display_name}}</a>
+        with {{q?.owner.reputation}} rep
+        <img src="{{q?.owner.profile_image}}" height="20" width="20"/>
+    </div>
+    <!--<pre>{{q?.body}}</pre>-->
+    <div>answers: {{q?.answer_count}}</div>
+    <ul>
+        <li *ngFor="let answer of q?.answers">
+            <div>{{answer?.answer_id}}</div>
+            <div>{{answer?.up_vote_count}}</div>
+            <!--<pre>{{answer?.body}}</pre>-->
+        </li>
+    </ul>
+</div>

@@ -34,7 +34,7 @@ export class QuestionService {
 
     getNewestQuery(): string {
         if(this.useStackOverflow) {
-            return 'http://api.stackexchange.com/2.2/search/advanced?page=1&pagesize=10&order=desc&sort=activity&accepted=True&answers=2&site=stackoverflow&filter=!*1SgQGDQ)5Y.lIuepUj09VlZ4y)max.5CM-rlGOA2&key=96KYrlU5uoaBkT4Y9Fc1rw(('
+            return 'http://api.stackexchange.com/2.2/search/advanced?page=1&pagesize=10&order=desc&sort=activity&accepted=True&answers=2&site=stackoverflow&filter=!*7PYVvGlC3ioZ2YD.1t9er8M4dtr'
         } else {
             return '/src/app/services/stack-newest-mock.json'
         }
@@ -42,7 +42,7 @@ export class QuestionService {
 
     getBatchQuery(queryIds: string): string {
         if(this.useStackOverflow) {
-            return `http://api.stackexchange.com/2.2/questions/${queryIds}?order=desc&sort=activity&site=stackoverflow&key=96KYrlU5uoaBkT4Y9Fc1rw((`
+            return `http://api.stackexchange.com/2.2/questions/${queryIds}?order=desc&sort=activity&site=stackoverflow&filter=!*7PYVvGlC3ioZ2YD.1t9er8M4dtr`
         } else {
             return '/src/app/services/stack-batch-mock.json'
         }

@@ -12,6 +12,6 @@ export class FbQuestion implements IFbQuestion {
 
     //error: getTotalGuesses is not a function from guess-list.component.ts
     getTotalGuesses(): number {
-        return this.answerCounts.reduce((a: number, b: number) => { return a + b })        
+        return this.answerCounts.reduce((a: number, b: number) => { return a + b })
     }
 }

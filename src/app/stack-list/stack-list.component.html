@@ -2,7 +2,7 @@
     <p>newest</p>
     <ul>
         <li *ngFor="let question of questions | async">
-            {{question.title}}
+            <a [routerLink]="['/question', question.question_id]">{{question.title}}</a>
         </li>
     </ul>
 </div>

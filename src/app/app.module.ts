@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 import { firebaseConfig } from './../environments/firebase.config';
+import { AppRoutingModule } from './app-routing.module';
 
 import { QuestionService } from './services/question.service';
 
@@ -23,7 +24,8 @@ import { StackListComponent } from './stack-list/stack-list.component';
     AngularFireModule.initializeApp(firebaseConfig),
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule
   ],
   providers: [
     QuestionService

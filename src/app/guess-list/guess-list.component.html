@@ -2,7 +2,7 @@
     <p>guesses <button (click)="deleteAllGuesses()">delete all</button></p>
     <ul>
         <li *ngFor="let question of guessList">
-            {{question.title}}: {{question.totalGuesses}}
+            <a [routerLink]="['/question', question.question_id]">{{question.title}}: {{question.totalGuesses}}</a>
         </li>
     </ul>
 </div>

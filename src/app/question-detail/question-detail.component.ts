@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { QuestionService } from '../services/question.service';
 
 @Component({
@@ -8,14 +9,24 @@ import { QuestionService } from '../services/question.service';
 })
 export class QuestionDetailComponent implements OnInit {
     q: {};
-    questionId: number = 6414384;
+    //questionId: number = 6414384;
 
-    constructor(private questionService: QuestionService) { }
+    constructor(
+        private route: ActivatedRoute,
+        private questionService: QuestionService
+    ) { }
 
-    ngOnInit() {
-        this.questionService.getFullStackQuestionById(this.questionId).subscribe((qAndA) => {
-            this.q = qAndA[0];
-        });
+    ngOnInit(): void {
+        this.route
+            .params
+            .map(params => params['id'])
+            .subscribe(id => {
+                this.questionService.getFullStackQuestionById(id).subscribe((qAndA) => {
+                    this.q = qAndA[0];
+                });
+            });
+
+
     }
 
     guess(question_id: number, answer_id: number) {

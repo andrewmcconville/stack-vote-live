@@ -26,7 +26,7 @@ export class GuessListComponent implements OnInit {
             if(stackQuery) {
                 //subscribe to stack questions using the joined stackQuery string
                 this.questionService.getBatchStackQuestionsByIds(stackQuery).subscribe((soQuestions: Array<SoQuestion>) => {
-                    //merge the stack and firebase questions for the UI 
+                    //merge the stack and firebase questions for the UI
                     this.guessList = this.mergeQuestions(fbQuestions, soQuestions)
                 });
             }
@@ -41,9 +41,8 @@ export class GuessListComponent implements OnInit {
                 //if the question ids match
                 if(soQuestion.question_id === fbQuestion.questionId) {
                     //sum up the count of all the firebase answers and put it on stack questions totalGuesses
-                    soQuestion.totalGuesses = fbQuestion.answerCounts.reduce((a: number, b: number) => {
-                        return a + b
-                    });
+                    soQuestion.totalGuesses = fbQuestion.answerCounts.reduce((a: number, b: number) => { return a + b });
+                    soQuestion.firebaseKey = fbQuestion.$key;
                 }
             });
         });

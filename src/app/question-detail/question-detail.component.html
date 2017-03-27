@@ -8,13 +8,13 @@
         with {{q?.owner.reputation}} rep
         <img src="{{q?.owner.profile_image}}" height="20" width="20"/>
     </div>
-    <div [innerHTML]="q?.body"></div>
+    <!--<div [innerHTML]="q?.body"></div>-->
     <div>answers: {{q?.answer_count}}</div>
     <ul>
         <li *ngFor="let a of q?.answers">
             <div>{{a?.answer_id}}</div>
             <div>{{a?.up_vote_count}} <button (click)="guess(q.question_id, a.answer_id)">vote</button></div>
-            <div [innerHTML]="a?.body"></div>
+            <!--<div [innerHTML]="a?.body"></div>-->
         </li>
     </ul>
 </div>

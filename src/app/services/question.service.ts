@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -20,6 +20,10 @@ export class QuestionService {
 
     getFirebaseQuestions(): FirebaseListObservable<any[]> {
         return this.af.database.list('/guesses');
+    }
+
+    getFirebaseQuestionByKey(key: string): FirebaseObjectObservable<any[]> {
+        return this.af.database.object(`/guesses/${key}`);
     }
 
     setFirebaseQuestion(questionId: number, answerIds: number): void {

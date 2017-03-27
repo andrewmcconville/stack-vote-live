@@ -1,4 +1,5 @@
 export interface IFbQuestion {
+    $key: string;
     questionId: number;
     answerIds: Array<number>;
     answerCounts: Array<number>;
@@ -6,6 +7,7 @@ export interface IFbQuestion {
 }
 
 export class FbQuestion implements IFbQuestion {
+    $key: string;
     questionId: number;
     answerIds: Array<number>;
     answerCounts: Array<number>;

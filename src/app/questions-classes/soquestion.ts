@@ -10,6 +10,7 @@ export interface ISoQuestion {
     question_id: number;
     title: string;
     totalGuesses?: number;
+    firebaseKey?: string;
 }
 
 export class SoQuestion implements ISoQuestion {
@@ -24,4 +25,5 @@ export class SoQuestion implements ISoQuestion {
     question_id: number;
     title: string;
     totalGuesses?: number;
+    firebaseKey?: string;
 }

@@ -32,8 +32,8 @@ export class QuestionDetailComponent implements OnInit {
         });
     }
 
-    guess(question_id: number, answer_id: number) {
-        this.questionService.setFirebaseQuestion(question_id, answer_id);
+    guess(question_id: number, answer_id: number, title: string) {
+        this.questionService.setFirebaseQuestion(question_id, answer_id, title);
         //this.router.navigate(['/question', this.q.question_id, this.fb.$key]);
     }
 }

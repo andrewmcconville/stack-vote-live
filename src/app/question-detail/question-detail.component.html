@@ -13,7 +13,7 @@
     <ul>
         <li *ngFor="let a of q?.answers">
             <div>{{a?.answer_id}}</div>
-            <div>{{a?.up_vote_count}} <button (click)="guess(q.question_id, a.answer_id)">vote</button></div>
+            <div>{{a?.up_vote_count}} <button (click)="guess(q.question_id, a.answer_id, q.title)">vote</button></div>
             <!--<div [innerHTML]="a?.body"></div>-->
         </li>
     </ul>

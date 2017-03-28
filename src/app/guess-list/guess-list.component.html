@@ -3,7 +3,7 @@
     <ul>
         <li *ngFor="let question of guessList">
             <a [routerLink]="['/question', question.question_id, question.firebaseKey]">{{question.title}}</a>
-            <div>{{question.firebaseKey || 'No Key'}}: {{question.totalGuesses || 'No Count'}}</div>
+            <div>{{question.$key || 'No Key'}}: {{question.totalGuesses || 'No Count'}}</div>
         </li>
     </ul>
 </div>

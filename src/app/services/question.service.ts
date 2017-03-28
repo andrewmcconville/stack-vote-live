@@ -26,9 +26,10 @@ export class QuestionService {
         return this.af.database.object(`/guesses/${key}`);
     }
 
-    setFirebaseQuestion(questionId: number, answerIds: number): void {
+    setFirebaseQuestion(questionId: number, answerIds: number, title: string): void {
         this.af.database.list('/guesses').push({
             questionId: questionId,
+            title: title,
             answerIds: [answerIds],
             answerCounts: [1]
         });
@@ -52,11 +53,11 @@ export class QuestionService {
             .map((response: Response) => response.json().items);
     }
 
-    getBatchStackQuestionsByIds(queryIds: string): Observable<SoQuestion[]> {
-        return this.http
-            .get(this.getBatchQuery(queryIds))
-            .map((response: Response) => response.json().items);
-    }
+    // getBatchStackQuestionsByIds(queryIds: string): Observable<SoQuestion[]> {
+    //     return this.http
+    //         .get(this.getBatchQuery(queryIds))
+    //         .map((response: Response) => response.json().items);
+    // }
 
     getFullStackQuestionById(queryId: number): Observable<SoQuestion[]> {
         return this.http
@@ -74,13 +75,13 @@ export class QuestionService {
         }
     }
 
-    private getBatchQuery(queryIds: string): string {
-        if(this.useStackOverflow) {
-            return `http://api.stackexchange.com/2.2/questions/${queryIds}?order=desc&sort=activity&site=stackoverflow&filter=!*7PYVvGlC3ioZ2YD.1t9er8M4dtr`
-        } else {
-            return '/src/app/services/stack-batch-mock.json'
-        }
-    }
+    // private getBatchQuery(queryIds: string): string {
+    //     if(this.useStackOverflow) {
+    //         return `http://api.stackexchange.com/2.2/questions/${queryIds}?order=desc&sort=activity&site=stackoverflow&filter=!*7PYVvGlC3ioZ2YD.1t9er8M4dtr`
+    //     } else {
+    //         return '/src/app/services/stack-batch-mock.json'
+    //     }
+    // }
 
     private getFullQuery(queryId: number): string {
         if(this.useStackOverflow) {

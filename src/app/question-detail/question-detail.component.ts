@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router} from '@angular/router';
 
-import { FbQuestion } from '../questions-classes/fbquestion';
+import { QuestionGuess } from '../question-guess/question-guess';
 import { QuestionService } from '../services/question.service';
 
 @Component({
@@ -26,7 +26,7 @@ export class QuestionDetailComponent implements OnInit {
             this.questionService.getFullStackQuestionById(params.id).subscribe((qAndA) => {
                 this.q = qAndA[0];
             });
-            this.questionService.getFirebaseQuestionByKey(params.key).subscribe((fbQuestion: Array<FbQuestion>) => {
+            this.questionService.getFirebaseQuestionByKey(params.key).subscribe((fbQuestion: Array<QuestionGuess>) => {
                 this.fb = fbQuestion
             })
         });

@@ -4,8 +4,8 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
-import { SoQuestion } from '../questions-classes/soquestion';
-import { FbQuestion } from '../questions-classes/fbquestion';
+import { QuestionNewest } from '../question-newest/question-newest';
+import { QuestionGuess } from '../question-guess/question-guess';
 
 @Injectable()
 export class QuestionService {
@@ -18,7 +18,7 @@ export class QuestionService {
 
     /* Firebase */
 
-    getFirebaseQuestions(): FirebaseListObservable<any[]> {
+    getFirebaseQuestions(): FirebaseListObservable<QuestionGuess[]> {
         return this.af.database.list('/guesses');
     }
 
@@ -47,7 +47,7 @@ export class QuestionService {
 
     /* Stack Gets */
 
-    getNewestStackQuestions(): Observable<SoQuestion[]> {
+    getNewestStackQuestions(): Observable<QuestionNewest[]> {
         return this.http
             .get(this.getNewestQuery())
             .map((response: Response) => response.json().items);
@@ -59,7 +59,7 @@ export class QuestionService {
     //         .map((response: Response) => response.json().items);
     // }
 
-    getFullStackQuestionById(queryId: number): Observable<SoQuestion[]> {
+    getFullStackQuestionById(queryId: number): Observable<QuestionNewest[]> {
         return this.http
             .get(this.getFullQuery(queryId))
             .map((response: Response) => response.json().items);

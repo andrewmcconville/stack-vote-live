@@ -4,10 +4,10 @@ import { Observable } from 'rxjs/Observable';
 
 @Component({
     moduleId: module.id,
-    selector: 'stack-list',
-    templateUrl: 'stack-list.component.html'
+    selector: 'newest-list',
+    templateUrl: 'newest-list.component.html'
 })
-export class StackListComponent implements OnInit {
+export class NewestListComponent implements OnInit {
     questions: Observable<any>;
     
     constructor(private questionService: QuestionService) { }

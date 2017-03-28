@@ -1,4 +1,4 @@
-export interface ISoQuestion {
+export interface IQuestionNewest {
     owner: {
         reputation: number,
         profile_image: string,
@@ -13,7 +13,7 @@ export interface ISoQuestion {
     firebaseKey?: string;
 }
 
-export class SoQuestion implements ISoQuestion {
+export class QuestionNewest implements IQuestionNewest {
     owner: {
         reputation: number,
         profile_image: string,

@@ -9,16 +9,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { QuestionService } from './services/question.service';
 
 import { AppComponent } from './app.component';
-import { GuessListComponent } from './guess-list/guess-list.component';
+import { GuessListComponent } from './question-guess/guess-list.component';
+import { NewestListComponent } from './question-newest/newest-list.component';
 import { QuestionDetailComponent } from './question-detail/question-detail.component';
-import { StackListComponent } from './stack-list/stack-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GuessListComponent,
     QuestionDetailComponent,
-    StackListComponent
+    NewestListComponent
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),

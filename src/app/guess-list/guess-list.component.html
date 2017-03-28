@@ -1,9 +1,0 @@
-<div>
-    <p>guesses <button (click)="deleteAllGuesses()">delete all</button></p>
-    <ul>
-        <li *ngFor="let question of guessList">
-            <a [routerLink]="['/question', question.question_id, question.firebaseKey]">{{question.title}}</a>
-            <div>{{question.$key || 'No Key'}}: {{question.totalGuesses || 'No Count'}}</div>
-        </li>
-    </ul>
-</div>

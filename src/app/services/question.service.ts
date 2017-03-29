@@ -28,23 +28,43 @@ export class QuestionService {
         return this.af.database.object(`/guesses/${key}`);
     }
 
-    setFirebaseQuestion(answerCount: number, answerId: number, questionId: number, title: string): void {
+    setFirebaseQuestion(answerId: number, questionId: number, title: string): void {
         this.af.database.object(`/guesses/${questionId}`).set({
-            title: title,
-            answers: [ { [answerId]: 1 } ]
+            answers: [ { [answerId]: 1 } ],
+            title: title
         });
     }
 
-    updateFirebaseQuestion(questionId: number): void {
+    setFirebaseAnswer(answerId: number, answerIndex: number, questionId: number): void {
+        this.af.database.object(`/guesses/${questionId}/answers/${answerIndex}`).set({
+            [answerId]: 1
+        });
+    }
+
+    updateFirebaseAnswer(answerCount: number, answerId: number, answerIndex: number, questionId: number): void {
+        this.af.database.object(`/guesses/${questionId}/answers/${answerIndex}`).update({
+            [answerId]: answerCount
+        });
+    }
+
+    updateFirebaseQuestion(questionId: number, answerIndex): void {
         this.af.database.list('/guesses').update(questionId.toString(), {
-            answers: [
-                { 879: 9 }
-            ]
+            title: 'new title'
         });
     }
 
-    deleteAllGuesses(): void {
+    deleteAllFirebaseQuestions(): void {
         this.af.database.list('/guesses').remove()
+    }
+
+    isFirebaseQuestion(questionId: number): boolean {
+        let existance: boolean;
+
+        this.af.database.object(`/guesses/${questionId}`).subscribe((object) => {
+            existance = object.$exists();
+        });
+
+        return existance
     }
 
     /* Stack Gets */

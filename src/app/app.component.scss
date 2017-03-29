@@ -1,0 +1,26 @@
+//helpers
+@import "./styles/_reset";
+@import "./styles/_typography";
+@import "./styles/_flexbox";
+
+//components
+@import "./styles/_card";
+@import "./styles/_card-list";
+@import "./styles/_user-meta";
+
+.app-root {
+    height: 100%;
+}
+
+.app__lists {
+    background-color: #80868F;
+    flex-shrink: 0;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 100%;
+
+    @media(min-width: 768px) {
+        width: 400px;
+    }
+}

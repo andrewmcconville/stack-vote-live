@@ -5,8 +5,7 @@ import { QuestionDetailComponent } from './question-detail/question-detail.compo
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: '/' },
-    { path: 'question/:id', component: QuestionDetailComponent },
-    { path: 'question/:id/:key', component: QuestionDetailComponent }
+    { path: 'question/:id', component: QuestionDetailComponent }
 ];
 
 @NgModule({

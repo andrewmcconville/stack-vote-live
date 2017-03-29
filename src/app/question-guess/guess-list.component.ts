@@ -22,12 +22,10 @@ export class GuessListComponent implements OnInit {
     private getQuestions() {
         this.questionService.getFirebaseQuestions().subscribe((questions: QuestionGuess[]) => {
             questions.forEach((question: QuestionGuess) => {
-                question.totalGuesses = question.answerCounts.reduce((a: number, b: number) => { return a + b });
-            })
-            
+                //question.totalGuesses = question.answerCounts.reduce((a: number, b: number) => { return a + b });
+            })            
             this.guessList = questions
         });
-        console.log(this.questionService.getFirebaseQuestions());
     }
 
     // // double query, get question from firebase, then get question data from stack

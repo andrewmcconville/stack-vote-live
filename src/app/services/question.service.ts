@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { Http, Response } from '@angular/http';
+import { Router} from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
@@ -12,6 +13,7 @@ export class QuestionService {
     useStackOverflow: boolean = false;
 
     constructor(
+        private router: Router,
         private af: AngularFire,
         private http: Http
     ) { }
@@ -26,18 +28,18 @@ export class QuestionService {
         return this.af.database.object(`/guesses/${key}`);
     }
 
-    setFirebaseQuestion(questionId: number, answerIds: number, title: string): void {
-        this.af.database.list('/guesses').push({
-            questionId: questionId,
+    setFirebaseQuestion(answerCount: number, answerId: number, questionId: number, title: string): void {
+        this.af.database.object(`/guesses/${questionId}`).set({
             title: title,
-            answerIds: [answerIds],
-            answerCounts: [1]
+            answers: [ { [answerId]: 1 } ]
         });
     }
 
-    updateFirebaseQuestion(key: string, questionId: number): void {
-        this.af.database.list('/guesses').update(key, {
-            questionId: questionId
+    updateFirebaseQuestion(questionId: number): void {
+        this.af.database.list('/guesses').update(questionId.toString(), {
+            answers: [
+                { 879: 9 }
+            ]
         });
     }
 

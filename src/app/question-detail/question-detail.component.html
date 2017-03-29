@@ -1,21 +1,30 @@
 <div>
-    <p>detail</p>
+    <p>detail <a class="button" [routerLink]="['']">close</a></p>
 
-    <div><button (click)="firebase()">firebase</button></div>
     <p>{{q?.title}} <a href="{{q?.link}}" target="_blank">link</a></p>
-    <div>
-        by
-        <a href="{{q?.owner.link}}" target="_blank">{{q?.owner.display_name}}</a>
-        with {{q?.owner.reputation}} rep
-        <img src="{{q?.owner.profile_image}}" height="20" width="20"/>
+    <div class="user-meta flex flex-end-center">
+        <img class="user-meta__image flex-noshrink" src="{{q?.owner.profile_image}}" alt="{{q?.owner.displayName}}" height="32" width="32"/>
+        <div>
+            Asked by <a href="{{q?.owner.link}}" target="_blank">{{q?.owner.display_name}}</a>
+            <div>with {{q?.owner.reputation}} rep</div>
+        </div>
     </div>
     <!--<div [innerHTML]="q?.body"></div>-->
     <div>answers: {{q?.answer_count}}</div>
     <ul>
         <li *ngFor="let a of q?.answers">
-            <div>{{a?.answer_id}}</div>
-            <div>{{a?.up_vote_count}} <button (click)="guess(a.answer_id, q.question_id, q.title)">vote</button></div>
+            <div>{{a?.answer_id}} <span *ngIf="q?.accepted_answer_id == a?.answer_id" [style.visibility]="showResults ? 'visible' : 'hidden'">Accepted Answer</span></div>
+            <div>
+                <span [style.visibility]="showResults ? 'visible' : 'hidden'">{{a?.up_vote_count}}</span>
+                votes with
+                <span [style.visibility]="showResults ? 'visible' : 'hidden'">{{a?.guessCount || 0}}</span>
+                guesses
+                <button class="button--guess" (click)="guess(a.answer_id, q)">guess</button>
+            </div>
             <!--<div [innerHTML]="a?.body"></div>-->
         </li>
     </ul>
+    <div>
+        <button (click)="showResults = !showResults">Toggle Results</button>
+    </div>
 </div>

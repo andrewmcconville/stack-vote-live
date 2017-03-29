@@ -28,6 +28,7 @@ export class GuessListComponent implements OnInit {
         });
     }
 
+    //deletes all questions in firebase
     private deleteAllGuesses() {
         this.questionService.deleteAllFirebaseQuestions();
     }

@@ -90,7 +90,7 @@ export class QuestionService {
 
     private getNewestQuery(): string {
         if (this.useStackOverflow) {
-            return 'http://api.stackexchange.com/2.2/search/advanced?page=1&pagesize=10&order=desc&sort=activity&accepted=True&answers=2&site=stackoverflow&filter=!*7PYVvGlC3ioZ2YD.1t9er8M4dtr'
+            return 'http://api.stackexchange.com/2.2/search/advanced?page=1&pagesize=20&order=desc&sort=activity&accepted=True&answers=2&site=stackoverflow&filter=!*7PYVvGlC3ioZ2YD.1t9er8M4dtr'
         } else {
             return '/src/app/services/stack-newest-mock.json'
         }

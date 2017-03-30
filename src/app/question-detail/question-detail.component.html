@@ -45,12 +45,6 @@
                 <div class="answer__acceptance" *ngIf="q?.accepted_answer_id == a?.answer_id" [style.display]="showResults ? 'block' : 'none'">
                     Oh Snap! Accepted Answer :)
                 </div>
-                <div class="answer__acceptance" *ngIf="q?.accepted_answer_id != a?.answer_id" [style.display]="showResults ? 'block' : 'none'">
-                    Not The Accepted Answer :(
-                </div>
-                <div class="answer__acceptance--info" [style.display]="showResults ? 'none' : 'block'">
-                    Click guess if you think this is the accepted answer
-                </div>
                 <div class="answer-body" [innerHTML]="a?.body"></div>
             </div>
         </li>

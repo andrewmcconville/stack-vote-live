@@ -36,12 +36,6 @@
     margin-top: 2px;
 }
 
-.answer__acceptance--info {
-    @extend .answer__acceptance;
-    color: #c0c0c0;
-    font-weight: 300;
-}
-
 .answer__accepted {
     background-color: #F8E1BB;
 }

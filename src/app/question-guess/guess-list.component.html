@@ -14,4 +14,6 @@
             <!--<div>{{q.$key || 'No Key'}}: {{q.totalGuesses || 'No Count'}}</div>-->
         </li>
     </ul>
+
+    <div class="card" *ngIf="guessList?.length <= 0">Start guessing by selecting a question below.</div>
 </div>

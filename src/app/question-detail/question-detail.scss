@@ -1,14 +1,30 @@
 :host {
     flex-grow: 1;
     height: 100%;
-    overflow-x: hidden;
-    overflow-y: scroll;
+    overflow: hidden;
 
     @media(max-width: 767px) {
         background-color: #fdfdfd;
         position: fixed;
         width: 100%;
     }
+}
+
+.question__header {
+}
+
+.question__scroll-container {
+    height: calc(100% - 72px);
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.question {
+    padding: 24px;
+}
+
+.question__link {
+    font-size: 14px;
 }
 
 .answer {

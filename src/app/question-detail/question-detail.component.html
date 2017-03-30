@@ -1,19 +1,28 @@
-<div>
-    <div class="flex flex-between-center">
-        <button (click)="showResults = !showResults">Toggle Results</button>
-        <a class="button" [routerLink]="['']">close</a>
-    </div>
+<h1 class="question__header flex flex-between-center">
+    <button (click)="showResults = !showResults">Results</button>
+    <span>{{q?.answer_count}} Answers</span>
+    <a class="button" [routerLink]="['']">close</a>
+</h1>
 
-    <p>{{q?.title}} <a href="{{q?.link}}" target="_blank">link</a></p>
-    <div class="user-meta flex flex-end-center">
-        <img class="user-meta__image flex-noshrink" src="{{q?.owner.profile_image}}" alt="{{q?.owner.displayName}}" height="32" width="32"/>
+<div class="question__scroll-container">
+    <div class="question">
+        <h2>{{q?.title}}</h2>
         <div>
-            Asked by <a href="{{q?.owner.link}}" target="_blank">{{q?.owner.display_name}}</a>
-            <div>with {{q?.owner.reputation}} rep</div>
+            <a class="question__link" href="{{q?.link}}" target="_blank">view&nbsp;on&nbsp;stack</a>
         </div>
+
+        <div class="user-meta flex flex-end-center">
+            <img class="user-meta__image flex-noshrink" src="{{q?.owner.profile_image}}" alt="{{q?.owner.displayName}}" height="32" width="32"/>
+            <div>
+                Asked by <a href="{{q?.owner.link}}" target="_blank">{{q?.owner.display_name}}</a>
+                <div>with {{q?.owner.reputation}} rep</div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div [innerHTML]="q?.body"></div>
     </div>
-    <!--<div [innerHTML]="q?.body"></div>-->
-    <div>{{q?.answer_count}} Answers</div>
     <ul class="card-list__list">
         <li class="card answer flex flex-start-start" *ngFor="let a of q?.answers">
             <div class="answer__guess">

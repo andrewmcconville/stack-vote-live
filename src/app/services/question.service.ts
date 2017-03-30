@@ -29,7 +29,7 @@ export class QuestionService {
 
     public setFirebaseQuestion(answerId: number, q: QuestionDetail): void {
         //some times stack users don't have these data, possibably deleted account?
-        if(!q.owner.profile_image) q.owner.profile_image = 'none';
+        if(!q.owner.profile_image) q.owner.profile_image = '../assets/default-avatar.png';
         if(!q.owner.reputation) q.owner.reputation = 0;
 
         this.angularFire.database.object(`/guesses/${q.question_id}`).set({

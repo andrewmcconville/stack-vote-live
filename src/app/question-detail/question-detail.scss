@@ -10,9 +10,6 @@
     }
 }
 
-.question__header {
-}
-
 .question__scroll-container {
     height: calc(100% - 72px);
     overflow-x: hidden;
@@ -29,6 +26,18 @@
 
 .answer {
     position: relative;
+}
+
+.answer__acceptance {
+    color: #606060;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    margin-top: 2px;
+}
+
+.answer__accepted {
+    background-color: #F8E1BB;
 }
 
 .answer-body {

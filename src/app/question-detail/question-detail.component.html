@@ -12,7 +12,8 @@
         </div>
 
         <div class="user-meta flex flex-end-center">
-            <img class="user-meta__image flex-noshrink" src="{{q?.owner.profile_image}}" alt="{{q?.owner.displayName}}" height="32" width="32"/>
+            <img class="user-meta__image flex-noshrink" src="{{q?.owner.profile_image}}" alt="{{q?.owner.displayName}}" height="32" width="32"
+            />
             <div>
                 Asked by <a href="{{q?.owner.link}}" target="_blank">{{q?.owner.display_name}}</a>
                 <div>with {{q?.owner.reputation}} rep</div>
@@ -24,7 +25,7 @@
         <div [innerHTML]="q?.body"></div>
     </div>
     <ul class="card-list__list">
-        <li class="card answer flex flex-start-start" *ngFor="let a of q?.answers">
+        <li class="card answer flex flex-start-start" *ngFor="let a of q?.answers" [ngClass]="{'answer__accepted': q?.accepted_answer_id == a?.answer_id && showResults}">
             <div class="answer__guess">
                 <div class="answer__count">
                     <span [style.display]="showResults ? 'block' : 'none'">{{a?.up_vote_count || 0}}</span>
@@ -36,10 +37,17 @@
                     <span [style.display]="showResults ? 'none' : 'block'">?</span>
                 </div>
                 <div class="answer__count-label">guesses</div>
-                <div><button class="button--guess" (click)="guess(a.answer_id, q)">guess</button></div>
+                <div><button class="button--guess" (click)="guess(a.answer_id, q); showResults = true;">guess</button></div>
             </div>
             <div class="answer__body flex-shrink">
-                                <div><span *ngIf="q?.accepted_answer_id == a?.answer_id" [style.visibility]="showResults ? 'visible' : 'hidden'">Accepted Answer</span></div>
+                <div>
+                    <span class="answer__acceptance" *ngIf="q?.accepted_answer_id == a?.answer_id" [style.display]="showResults ? 'block' : 'none'">
+                        Oh Snap! Accepted Answer :)
+                    </span>
+                    <span class="answer__acceptance" *ngIf="q?.accepted_answer_id != a?.answer_id" [style.display]="showResults ? 'block' : 'none'">
+                        Not The Accepted Answer :(
+                    </span>
+                </div>
 
                 <div class="answer-body" [innerHTML]="a?.body"></div>
             </div>

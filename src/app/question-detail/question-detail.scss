@@ -10,3 +10,37 @@
         width: 100%;
     }
 }
+
+.answer {
+    position: relative;
+}
+
+.answer-body {
+    font-size: 16px;
+}
+
+.answer__guess {
+    position: absolute;
+    text-align: center;
+    width: 64px;
+}
+
+.answer__body {
+    color: #606060;
+    min-height: 172px;
+    padding-left: 88px;
+    width: 100%;
+}
+
+.answer__count {
+    font-size: 32px;
+    font-weight: 200;
+    line-height: 1;
+}
+
+.answer__count-label {
+    color: #606060;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}

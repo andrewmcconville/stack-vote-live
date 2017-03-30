@@ -21,6 +21,10 @@ ul {
     padding: 0;
 }
 
+p {
+    margin: 0 0 12px 0;
+}
+
 a {
     color: #47c;
     text-decoration: none;
@@ -49,4 +53,19 @@ button {
         background-color: #47c;
         color: #fff;
     }
+}
+
+pre {
+    background-color: #f0f4f8;
+    border-radius: 4px;
+    overflow-x: auto;
+    padding: 8px;
+}
+
+code {
+    background-color: #f0f4f8;
+    border-radius: 4px;
+    display: inline-block;
+    font-size: 11px;
+    padding: 3px 6px;
 }

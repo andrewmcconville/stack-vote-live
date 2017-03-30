@@ -1,5 +1,8 @@
 <div>
-    <p>detail <a class="button" [routerLink]="['']">close</a></p>
+    <div class="flex flex-between-center">
+        <button (click)="showResults = !showResults">Toggle Results</button>
+        <a class="button" [routerLink]="['']">close</a>
+    </div>
 
     <p>{{q?.title}} <a href="{{q?.link}}" target="_blank">link</a></p>
     <div class="user-meta flex flex-end-center">
@@ -10,21 +13,27 @@
         </div>
     </div>
     <!--<div [innerHTML]="q?.body"></div>-->
-    <div>answers: {{q?.answer_count}}</div>
-    <ul>
-        <li *ngFor="let a of q?.answers">
-            <div>{{a?.answer_id}} <span *ngIf="q?.accepted_answer_id == a?.answer_id" [style.visibility]="showResults ? 'visible' : 'hidden'">Accepted Answer</span></div>
-            <div>
-                <span [style.visibility]="showResults ? 'visible' : 'hidden'">{{a?.up_vote_count}}</span>
-                votes with
-                <span [style.visibility]="showResults ? 'visible' : 'hidden'">{{a?.guessCount || 0}}</span>
-                guesses
-                <button class="button--guess" (click)="guess(a.answer_id, q)">guess</button>
+    <div>{{q?.answer_count}} Answers</div>
+    <ul class="card-list__list">
+        <li class="card answer flex flex-start-start" *ngFor="let a of q?.answers">
+            <div class="answer__guess">
+                <div class="answer__count">
+                    <span [style.display]="showResults ? 'block' : 'none'">{{a?.up_vote_count || 0}}</span>
+                    <span [style.display]="showResults ? 'none' : 'block'">?</span>
+                </div>
+                <div class="answer__count-label">up votes</div>
+                <div class="answer__count">
+                    <span [style.display]="showResults ? 'block' : 'none'">{{a?.guessCount || 0}}</span>
+                    <span [style.display]="showResults ? 'none' : 'block'">?</span>
+                </div>
+                <div class="answer__count-label">guesses</div>
+                <div><button class="button--guess" (click)="guess(a.answer_id, q)">guess</button></div>
             </div>
-            <!--<div [innerHTML]="a?.body"></div>-->
+            <div class="answer__body flex-shrink">
+                                <div><span *ngIf="q?.accepted_answer_id == a?.answer_id" [style.visibility]="showResults ? 'visible' : 'hidden'">Accepted Answer</span></div>
+
+                <div class="answer-body" [innerHTML]="a?.body"></div>
+            </div>
         </li>
     </ul>
-    <div>
-        <button (click)="showResults = !showResults">Toggle Results</button>
-    </div>
 </div>

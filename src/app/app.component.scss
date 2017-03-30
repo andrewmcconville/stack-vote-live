@@ -9,7 +9,16 @@
 @import "./styles/_user-meta";
 
 .app-root {
+    background-image: url("../assets/logos.jpg");
+    background-position: 94% center;
+    background-repeat: no-repeat;
+    background-size: 40% auto;
     height: 100%;
+
+    @media(max-height: 600px) {
+        background-position: 90% center;
+        background-size: auto 80%;
+    }
 }
 
 .app__lists {

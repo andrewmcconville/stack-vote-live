@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2';
 
 import { QuestionService } from '../services/question.service';
+import { DebugService } from '../services/debug.service'
 import { QuestionNewest } from '../question-newest/question-newest';
 import { QuestionGuess } from './question-guess';
 
@@ -13,7 +14,10 @@ import { QuestionGuess } from './question-guess';
 export class GuessListComponent implements OnInit {
     guessList: Array<QuestionGuess>;
 
-    constructor(private questionService: QuestionService) { }
+    constructor(
+        private debugService: DebugService,
+        private questionService: QuestionService
+    ) { }
 
     ngOnInit() {
         this.getQuestions();
@@ -28,8 +32,13 @@ export class GuessListComponent implements OnInit {
         });
     }
 
-    //deletes all questions in firebase
+    //deletes ALL questions in firebase
     private deleteAllGuesses() {
         this.questionService.deleteAllFirebaseQuestions();
+    }
+
+    //deletes this questions in firebase
+    private deleteGuesses(key: number) {
+        this.questionService.deleteFirebaseQuestionById(key);
     }
 }

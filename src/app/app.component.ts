@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import {ViewEncapsulation} from '@angular/core';
+import { ViewEncapsulation } from '@angular/core';
+
+import { DebugService } from './services/debug.service';
 
 @Component({
   moduleId: module.id,
@@ -9,4 +11,10 @@ import {ViewEncapsulation} from '@angular/core';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+
+    constructor(private debugService: DebugService) { }
+
+    toggleDebugMode() {
+        this.debugService.toggleDebugMode();
+    }
 }

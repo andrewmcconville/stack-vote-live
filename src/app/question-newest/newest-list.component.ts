@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { QuestionService } from '../services/question.service';
 import { Observable } from 'rxjs/Observable';
+
+import { QuestionService } from '../services/question.service';
+import { QuestionNewest } from './question-newest'
 
 @Component({
     moduleId: module.id,
@@ -8,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
     templateUrl: 'newest-list.component.html'
 })
 export class NewestListComponent implements OnInit {
-    questions: Observable<any>;
+    questions: Observable<QuestionNewest[]>;
     
     constructor(private questionService: QuestionService) { }
 

@@ -13,22 +13,26 @@ export class QuestionService {
     private useStackOverflow: boolean = false;
 
     constructor(
-        private af: AngularFire,
+        private angularFire: AngularFire,
         private http: Http
     ) { }
 
     /* Firebase */
 
     public getFirebaseQuestions(): FirebaseListObservable<QuestionGuess[]> {
-        return this.af.database.list('/guesses');
+        return this.angularFire.database.list('/guesses');
     }
 
-    public getFirebaseQuestionByKey(key: string): FirebaseObjectObservable<any[]> {
-        return this.af.database.object(`/guesses/${key}`);
+    public getFirebaseQuestionByKey(key: string): FirebaseObjectObservable<QuestionGuess[]> {
+        return this.angularFire.database.object(`/guesses/${key}`);
     }
 
     public setFirebaseQuestion(answerId: number, q: QuestionDetail): void {
-        this.af.database.object(`/guesses/${q.question_id}`).set({
+        //some times stack users don't have these data, possibably deleted account?
+        if(!q.owner.profile_image) q.owner.profile_image = 'none';
+        if(!q.owner.reputation) q.owner.reputation = 0;
+
+        this.angularFire.database.object(`/guesses/${q.question_id}`).set({
             answers: [{ [answerId]: 1 }],
             title: q.title,
             owner: {
@@ -41,31 +45,35 @@ export class QuestionService {
     }
 
     public setFirebaseAnswer(answerId: number, answerIndex: number, questionId: number): void {
-        this.af.database.object(`/guesses/${questionId}/answers/${answerIndex}`).set({
+        this.angularFire.database.object(`/guesses/${questionId}/answers/${answerIndex}`).set({
             [answerId]: 1
         });
     }
 
     public updateFirebaseQuestion(questionId: number, answerIndex): void {
-        this.af.database.list('/guesses').update(questionId.toString(), {
+        this.angularFire.database.list('/guesses').update(questionId.toString(), {
             title: 'new title'
         });
     }
 
     public updateFirebaseAnswer(answerCount: number, answerId: number, answerIndex: number, questionId: number): void {
-        this.af.database.object(`/guesses/${questionId}/answers/${answerIndex}`).update({
+        this.angularFire.database.object(`/guesses/${questionId}/answers/${answerIndex}`).update({
             [answerId]: answerCount
         });
     }
 
+    public deleteFirebaseQuestionById(key: number): void {
+        this.angularFire.database.object(`/guesses/${key}`).remove()
+    }
+
     public deleteAllFirebaseQuestions(): void {
-        this.af.database.list('/guesses').remove()
+        this.angularFire.database.list('/guesses').remove()
     }
 
     public isFirebaseQuestion(questionId: number): boolean {
         let existance: boolean;
 
-        this.af.database.object(`/guesses/${questionId}`).subscribe((object) => {
+        this.angularFire.database.object(`/guesses/${questionId}`).subscribe((object) => {
             existance = object.$exists();
         });
 

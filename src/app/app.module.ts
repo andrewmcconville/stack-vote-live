@@ -7,6 +7,7 @@ import { firebaseConfig } from './../environments/firebase.config';
 import { AppRoutingModule } from './app-routing.module';
 
 import { QuestionService } from './services/question.service';
+import { DebugService } from './services/debug.service';
 
 import { AppComponent } from './app.component';
 import { GuessListComponent } from './question-guess/guess-list.component';
@@ -28,6 +29,7 @@ import { QuestionDetailComponent } from './question-detail/question-detail.compo
     AppRoutingModule
   ],
   providers: [
+    DebugService,
     QuestionService
   ],
   bootstrap: [AppComponent]

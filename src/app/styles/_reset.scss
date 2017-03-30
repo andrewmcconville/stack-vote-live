@@ -48,6 +48,11 @@ button {
         background-color: #47c;
         color: #fff;
     }
+
+    &:active {
+        background-color: #fff;
+        color: #47C;
+    }
 }
 
 pre {
@@ -69,6 +74,6 @@ code {
     border-radius: 4px;
     display: inline-block;
     font-family: 'Ubuntu Mono', monospace;
-    font-size: 11px;
+    font-size: 12px;
     padding: 3px 6px;
 }

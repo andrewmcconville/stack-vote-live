@@ -1,17 +1,22 @@
 <div class="card-list">
-    <h1 class="card-list__header flex flex-between-center">Questions with Guesses <button (click)="deleteAllGuesses()">rm</button></h1>
+    <h1 class="card-list__header flex flex-between-center">
+        Questions with Guesses
+        <button *ngIf="debugService.debugButtons" (click)="deleteAllGuesses()">rm</button>
+    </h1>
 
     <ul class="card-list__list">
         <li class="card" *ngFor="let question of guessList">
-            <a class="card__question" [routerLink]="['/question', question.$key]">{{question.title}}</a>
+            <div class="flex flex-between-start">
+                <a class="card__question" [routerLink]="['/question', question.$key]">{{question.title}}</a>
+                <button *ngIf="debugService.debugButtons" (click)="deleteGuesses(question.$key)">rm</button>
+            </div>
             <div class="user-meta flex flex-end-center">
                 <img class="user-meta__image flex-noshrink" [src]="question.owner.profileImage" alt="{{question.owner.displayName}}" />
                 <div>
                     Asked by <a [href]="question.owner.link" target="_blank">{{question.owner.displayName}}</a>
-                    <div>with {{question.owner.reputation}} rep</div>
+                    <div>with {{question.owner.reputation || 0}} rep</div>
                 </div>
             </div>
-            <!--<div>{{q.$key || 'No Key'}}: {{q.totalGuesses || 'No Count'}}</div>-->
         </li>
     </ul>
 

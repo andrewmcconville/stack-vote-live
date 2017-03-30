@@ -4,6 +4,7 @@ import { ActivatedRoute, Params, Router} from '@angular/router';
 import { QuestionDetail } from '../question-detail/question-detail';
 import { QuestionGuess } from '../question-guess/question-guess';
 import { QuestionService } from '../services/question.service';
+import { DebugService } from '../services/debug.service'
 
 @Component({
     moduleId: module.id,
@@ -18,6 +19,7 @@ export class QuestionDetailComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
+        private debugService: DebugService,
         private questionService: QuestionService
     ) { }
 

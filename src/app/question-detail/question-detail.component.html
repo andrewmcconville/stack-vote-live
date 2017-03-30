@@ -1,5 +1,5 @@
 <h1 class="question__header flex flex-between-center">
-    <button (click)="showResults = !showResults">Results</button>
+    <button *ngIf="debugService.debugButtons" (click)="showResults = !showResults">Results</button>
     <span>{{q?.answer_count}} Answers</span>
     <a class="button" [routerLink]="['']">Close</a>
 </h1>
@@ -37,9 +37,12 @@
                     <span [style.display]="showResults ? 'none' : 'block'">?</span>
                 </div>
                 <div class="answer__count-label">guesses</div>
-                <div [style.visibility]="showResults ? 'hidden' : 'visible'">
+                <div *ngIf="debugService.debugButtons || !showResults">
                     <button class="button--guess" (click)="guess(a.answer_id, q); showResults = true;">guess</button>
                 </div>
+                <!--<div [style.visibility]="showResults ? 'hidden' : 'visible'">
+                    <button class="button--guess" (click)="guess(a.answer_id, q); showResults = true;">guess</button>
+                </div>-->
             </div>
             <div class="answer__body flex-shrink">
                 <div class="answer__acceptance" *ngIf="q?.accepted_answer_id == a?.answer_id" [style.display]="showResults ? 'block' : 'none'">

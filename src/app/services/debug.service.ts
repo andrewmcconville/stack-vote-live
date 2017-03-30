@@ -5,12 +5,17 @@ import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
 export class DebugService {
     debugButtons: boolean;
 
-    constructor(private angularFire: AngularFire) { }
+    constructor(private angularFire: AngularFire) {
+        this.getDebugStatus();
+    }
 
-    toggleDebugMode() {
+    getDebugStatus(): void {
         this.angularFire.database.object('/debug').subscribe(debug => {
             this.debugButtons = debug.$value
         });
+    }
+
+    toggleDebugMode(): void {
         this.angularFire.database.object('/debug').set(!this.debugButtons);
     }
 }

@@ -40,9 +40,6 @@
                 <div *ngIf="debugService.debugButtons || !showResults">
                     <button class="button--guess" (click)="guess(a.answer_id, q); showResults = true;">guess</button>
                 </div>
-                <!--<div [style.visibility]="showResults ? 'hidden' : 'visible'">
-                    <button class="button--guess" (click)="guess(a.answer_id, q); showResults = true;">guess</button>
-                </div>-->
             </div>
             <div class="answer__body flex-shrink">
                 <div class="answer__acceptance" *ngIf="q?.accepted_answer_id == a?.answer_id" [style.display]="showResults ? 'block' : 'none'">

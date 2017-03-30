@@ -13,6 +13,7 @@ import { QuestionGuess } from './question-guess';
 })
 export class GuessListComponent implements OnInit {
     guessList: Array<QuestionGuess>;
+    debugButtons: boolean = false;
 
     constructor(
         private debugService: DebugService,

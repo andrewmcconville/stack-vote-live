@@ -37,18 +37,20 @@
                     <span [style.display]="showResults ? 'none' : 'block'">?</span>
                 </div>
                 <div class="answer__count-label">guesses</div>
-                <div><button class="button--guess" (click)="guess(a.answer_id, q); showResults = true;">guess</button></div>
+                <div [style.visibility]="showResults ? 'hidden' : 'visible'">
+                    <button class="button--guess" (click)="guess(a.answer_id, q); showResults = true;">guess</button>
+                </div>
             </div>
             <div class="answer__body flex-shrink">
-                <div>
-                    <span class="answer__acceptance" *ngIf="q?.accepted_answer_id == a?.answer_id" [style.display]="showResults ? 'block' : 'none'">
-                        Oh Snap! Accepted Answer :)
-                    </span>
-                    <span class="answer__acceptance" *ngIf="q?.accepted_answer_id != a?.answer_id" [style.display]="showResults ? 'block' : 'none'">
-                        Not The Accepted Answer :(
-                    </span>
+                <div class="answer__acceptance" *ngIf="q?.accepted_answer_id == a?.answer_id" [style.display]="showResults ? 'block' : 'none'">
+                    Oh Snap! Accepted Answer :)
                 </div>
-
+                <div class="answer__acceptance" *ngIf="q?.accepted_answer_id != a?.answer_id" [style.display]="showResults ? 'block' : 'none'">
+                    Not The Accepted Answer :(
+                </div>
+                <div class="answer__acceptance--info" [style.display]="showResults ? 'none' : 'block'">
+                    Click guess if you think this is the accepted answer
+                </div>
                 <div class="answer-body" [innerHTML]="a?.body"></div>
             </div>
         </li>

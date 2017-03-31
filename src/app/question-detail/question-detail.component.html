@@ -1,7 +1,9 @@
 <h1 class="question__header flex flex-between-center">
     <button *ngIf="debugService.debugButtons" (click)="showResults = !showResults">Results</button>
     <span>{{q?.answer_count}} Answers</span>
-    <a class="button" [routerLink]="['']">Close</a>
+    <a class="button" [routerLink]="['']">
+        <i class="fa fa-times"></i>
+    </a>
 </h1>
 
 <div class="question__scroll-container">

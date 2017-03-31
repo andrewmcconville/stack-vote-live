@@ -1,14 +1,18 @@
 <div class="card-list">
     <h1 class="card-list__header flex flex-between-center">
         Questions with Guesses
-        <button *ngIf="debugService.debugButtons" (click)="deleteAllGuesses()">rm</button>
+        <button *ngIf="debugService.debugButtons" (click)="deleteAllGuesses()">
+            <i class="fa fa-trash-o"></i>
+        </button>
     </h1>
 
     <ul class="card-list__list">
         <li class="card" *ngFor="let question of guessList">
             <div class="flex flex-between-start">
                 <a class="card__question" [routerLink]="['/question', question.$key]">{{question.title}}</a>
-                <button *ngIf="debugService.debugButtons" (click)="deleteGuesses(question.$key)">rm</button>
+                <button *ngIf="debugService.debugButtons" (click)="deleteGuesses(question.$key)">
+                    <i class="fa fa-trash-o"></i>
+                </button>
             </div>
             <div class="user-meta flex flex-end-center">
                 <img class="user-meta__image flex-noshrink" [src]="question.owner.profileImage" alt="{{question.owner.displayName}}" />

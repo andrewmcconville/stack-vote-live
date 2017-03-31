@@ -10,7 +10,7 @@ import { QuestionNewest } from '../question-newest/question-newest';
 
 @Injectable()
 export class QuestionService {
-    private useStackOverflow: boolean = true;
+    private useStackOverflow: boolean = false;
 
     constructor(
         private angularFire: AngularFire,

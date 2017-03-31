@@ -15,6 +15,7 @@ import { DebugService } from '../services/debug.service'
 export class QuestionDetailComponent implements OnInit {
     q: QuestionDetail;
     g: QuestionGuess;
+    showResults: boolean = false;
 
     constructor(
         private route: ActivatedRoute,
@@ -32,6 +33,8 @@ export class QuestionDetailComponent implements OnInit {
             //get the question id
             return { id: params['id'] }
         }).subscribe((params: Params) => {
+            //on new question reset result state
+            this.showResults = false;
             //use the id to get a specific question
             this.questionService.getFullStackQuestionById(params.id).subscribe((questionDetail: Array<QuestionDetail>) => {
                 this.q = questionDetail[0];

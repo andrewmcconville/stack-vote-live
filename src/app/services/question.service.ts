@@ -50,7 +50,7 @@ export class QuestionService {
         });
     }
 
-    public updateFirebaseQuestion(questionId: number, answerIndex): void {
+    public updateFirebaseQuestion(questionId: number, answerIndex: number): void {
         this.angularFire.database.list('/guesses').update(questionId.toString(), {
             title: 'new title'
         });

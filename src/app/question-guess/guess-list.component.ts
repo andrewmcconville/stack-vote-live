@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2';
 
 import { QuestionService } from '../services/question.service';
-import { DebugService } from '../services/debug.service'
+import { DebugService } from '../services/debug.service';
 import { QuestionNewest } from '../question-newest/question-newest';
 import { QuestionGuess } from './question-guess';
 
@@ -27,19 +27,19 @@ export class GuessListComponent implements OnInit {
     private getQuestions() {
         this.questionService.getFirebaseQuestions().subscribe((questions: QuestionGuess[]) => {
             questions.forEach((question: QuestionGuess) => {
-                //question.totalGuesses = question.answerCounts.reduce((a: number, b: number) => { return a + b });
-            })            
-            this.guessList = questions
+                // question.totalGuesses = question.answerCounts.reduce((a: number, b: number) => { return a + b });
+            });
+            this.guessList = questions;
         });
-    }
+    };
 
-    //deletes ALL questions in firebase
+    // deletes ALL questions in firebase
     private deleteAllGuesses() {
         this.questionService.deleteAllFirebaseQuestions();
-    }
+    };
 
-    //deletes this questions in firebase
+    // deletes this questions in firebase
     private deleteGuesses(key: number) {
         this.questionService.deleteFirebaseQuestionById(key);
-    }
+    };
 }

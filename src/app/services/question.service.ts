@@ -21,16 +21,16 @@ export class QuestionService {
 
     public getFirebaseQuestions(): FirebaseListObservable<QuestionGuess[]> {
         return this.angularFire.database.list('/guesses');
-    }
+    };
 
     public getFirebaseQuestionByKey(key: string): FirebaseObjectObservable<QuestionGuess[]> {
         return this.angularFire.database.object(`/guesses/${key}`);
-    }
+    };
 
     public setFirebaseQuestion(answerId: number, q: QuestionDetail): void {
-        //some times stack users don't have these data, possibably deleted account?
-        if(!q.owner.profile_image) q.owner.profile_image = '../assets/default-avatar.png';
-        if(!q.owner.reputation) q.owner.reputation = 0;
+        // some times stack users don't have these data, possibably deleted account?
+        if (!q.owner.profile_image) { q.owner.profile_image = '../assets/default-avatar.png'; }
+        if (!q.owner.reputation) { q.owner.reputation = 0; }
 
         this.angularFire.database.object(`/guesses/${q.question_id}`).set({
             answers: [{ [answerId]: 1 }],
@@ -42,33 +42,33 @@ export class QuestionService {
                 link: q.link
             }
         });
-    }
+    };
 
     public setFirebaseAnswer(answerId: number, answerIndex: number, questionId: number): void {
         this.angularFire.database.object(`/guesses/${questionId}/answers/${answerIndex}`).set({
             [answerId]: 1
         });
-    }
+    };
 
     public updateFirebaseQuestion(questionId: number, answerIndex: number): void {
         this.angularFire.database.list('/guesses').update(questionId.toString(), {
             title: 'new title'
         });
-    }
+    };
 
     public updateFirebaseAnswer(answerCount: number, answerId: number, answerIndex: number, questionId: number): void {
         this.angularFire.database.object(`/guesses/${questionId}/answers/${answerIndex}`).update({
             [answerId]: answerCount
         });
-    }
+    };
 
     public deleteFirebaseQuestionById(key: number): void {
-        this.angularFire.database.object(`/guesses/${key}`).remove()
-    }
+        this.angularFire.database.object(`/guesses/${key}`).remove();
+    };
 
     public deleteAllFirebaseQuestions(): void {
-        this.angularFire.database.list('/guesses').remove()
-    }
+        this.angularFire.database.list('/guesses').remove();
+    };
 
     public isFirebaseQuestion(questionId: number): boolean {
         let existance: boolean;
@@ -77,8 +77,8 @@ export class QuestionService {
             existance = object.$exists();
         });
 
-        return existance
-    }
+        return existance;
+    };
 
     /* Stack Gets */
 
@@ -86,29 +86,29 @@ export class QuestionService {
         return this.http
             .get(this.getNewestQuery())
             .map((response: Response) => response.json().items);
-    }
+    };
 
     public getFullStackQuestionById(queryId: number): Observable<QuestionDetail[]> {
         return this.http
             .get(this.getFullQuery(queryId))
             .map((response: Response) => response.json().items);
-    }
+    };
 
     /* Stack Queries */
 
     private getNewestQuery(): string {
         if (this.useStackOverflow) {
-            return 'http://api.stackexchange.com/2.2/search/advanced?page=1&pagesize=20&order=desc&sort=activity&accepted=True&answers=2&site=stackoverflow&filter=!*7PYVvGlC3ioZ2YD.1t9er8M4dtr'
+            return 'http://api.stackexchange.com/2.2/search/advanced?page=1&pagesize=20&order=desc&sort=activity&accepted=True&answers=2&site=stackoverflow&filter=!*7PYVvGlC3ioZ2YD.1t9er8M4dtr';
         } else {
-            return '/src/app/services/stack-newest-mock.json'
+            return '/src/app/services/stack-newest-mock.json';
         }
-    }
+    };
 
     private getFullQuery(queryId: number): string {
         if (this.useStackOverflow) {
-            return `http://api.stackexchange.com//2.2/questions/${queryId}?order=desc&sort=activity&site=stackoverflow&filter=!E-NOqiG71BN9ADWkx7_t.c9XpMYubL-MTk3mCi`
+            return `http://api.stackexchange.com//2.2/questions/${queryId}?order=desc&sort=activity&site=stackoverflow&filter=!E-NOqiG71BN9ADWkx7_t.c9XpMYubL-MTk3mCi`;
         } else {
-            return '/src/app/services/stack-full-mock.json'
+            return '/src/app/services/stack-full-mock.json';
         }
-    }
+    };
 }

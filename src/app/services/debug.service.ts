@@ -11,7 +11,7 @@ export class DebugService {
 
     getDebugStatus(): void {
         this.angularFire.database.object('/debug').subscribe(debug => {
-            this.debugButtons = debug.$value
+            this.debugButtons = debug.$value;
         });
     }
 

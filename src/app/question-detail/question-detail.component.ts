@@ -20,7 +20,7 @@ export class QuestionDetailComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private debugService: DebugService,
+        public debugService: DebugService,
         private questionService: QuestionService
     ) { }
 

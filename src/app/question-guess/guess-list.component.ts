@@ -16,7 +16,7 @@ export class GuessListComponent implements OnInit {
     debugButtons: boolean = false;
 
     constructor(
-        private debugService: DebugService,
+        public debugService: DebugService,
         private questionService: QuestionService
     ) { }
 

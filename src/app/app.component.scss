@@ -1,12 +1,12 @@
 //helpers
-@import "./styles/_reset";
-@import "./styles/_typography";
-@import "./styles/_flexbox";
+@import "./styles/_reset.scss";
+@import "./styles/_typography.scss";
+@import "./styles/_flexbox.scss";
 
 //components
-@import "./styles/_card";
-@import "./styles/_card-list";
-@import "./styles/_user-meta";
+@import "./styles/_card.scss";
+@import "./styles/_card-list.scss";
+@import "./styles/_user-meta.scss";
 
 .app-root {
     background-image: url("../assets/logos.jpg");

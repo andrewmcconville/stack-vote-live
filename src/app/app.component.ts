@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 
@@ -12,7 +13,12 @@ import { DebugService } from './services/debug.service';
 })
 export class AppComponent {
 
-    constructor(private debugService: DebugService) { }
+    constructor(
+        private debugService: DebugService,
+        private titleService: Title
+    ) {
+        this.titleService.setTitle('Home');
+    }
 
     toggleDebugMode() {
         this.debugService.toggleDebugMode();

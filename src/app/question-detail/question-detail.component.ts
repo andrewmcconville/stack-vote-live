@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { QuestionDetail } from '../question-detail/question-detail';
@@ -21,11 +22,13 @@ export class QuestionDetailComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         public debugService: DebugService,
-        private questionService: QuestionService
+        private questionService: QuestionService,
+        private titleService: Title
     ) { }
 
     ngOnInit(): void {
         this.getQuestionByRouteParam();
+        this.titleService.setTitle('Question')
     }
 
     private getQuestionByRouteParam(): void {

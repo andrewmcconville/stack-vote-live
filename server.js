@@ -8,7 +8,7 @@ const path = require('path');
 app.use(compress());
 
 // send prerendered pages to bots
-app.use(require('prerender-node'));
+//app.use(require('prerender-node'));
 
 // set the port of our application
 // process.env.PORT lets the port be set by Heroku

@@ -7,6 +7,9 @@ const path = require('path');
 // activate gzip
 app.use(compress());
 
+//send prerendered pages to bots
+app.use(require('prerender-node'));
+
 // Run the app by serving the static files
 // in the dist directory
 app.use(express.static(__dirname + '/dist'));

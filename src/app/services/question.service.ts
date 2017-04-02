@@ -98,7 +98,7 @@ export class QuestionService {
 
     private getNewestQuery(): string {
         if (this.useStackOverflow) {
-            return 'http://api.stackexchange.com/2.2/search/advanced?page=1&pagesize=20&order=desc&sort=activity&accepted=True&answers=2&site=stackoverflow&filter=!*7PYVvGlC3ioZ2YD.1t9er8M4dtr';
+            return 'https://api.stackexchange.com/2.2/search/advanced?page=1&pagesize=20&order=desc&sort=activity&accepted=True&answers=2&site=stackoverflow&filter=!*7PYVvGlC3ioZ2YD.1t9er8M4dtr';
         } else {
             return '/src/app/services/stack-newest-mock.json';
         }
@@ -106,7 +106,7 @@ export class QuestionService {
 
     private getFullQuery(queryId: number): string {
         if (this.useStackOverflow) {
-            return `http://api.stackexchange.com//2.2/questions/${queryId}?order=desc&sort=activity&site=stackoverflow&filter=!E-NOqiG71BN9ADWkx7_t.c9XpMYubL-MTk3mCi`;
+            return `https://api.stackexchange.com//2.2/questions/${queryId}?order=desc&sort=activity&site=stackoverflow&filter=!E-NOqiG71BN9ADWkx7_t.c9XpMYubL-MTk3mCi`;
         } else {
             return '/src/app/services/stack-full-mock.json';
         }

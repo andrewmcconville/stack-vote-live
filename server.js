@@ -24,11 +24,12 @@ app.listen(process.env.PORT || 8080);
 //     res.sendFile(path.join(__dirname + '/dist/index.html'));
 // });
 
-app.get('*', function (req, res) {
+app.get('*', function (req, res, next) {
     if (req.headers['x-forwarded-proto'] != 'https') {
-        res.redirect('https://stackvotelive.herokuapp.com/dist/index.html');
+        res.redirect('https://' + req.hostname + req.url);
     }
     else {
-        res.sendFile('https://stackvotelive.herokuapp.com/dist/index.html');
+        //res.sendFile(path.join(__dirname + '/dist/index.html'));
+        next();
     }
 });

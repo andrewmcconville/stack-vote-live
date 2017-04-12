@@ -10,14 +10,14 @@
     <div class="question">
         <h2>{{q?.title}}</h2>
         <div>
-            <a class="question__link" href="{{q?.link}}" target="_blank">view&nbsp;on&nbsp;stack</a>
+            <a class="question__link" href="{{q?.link}}" target="_blank" rel="noopener">view&nbsp;on&nbsp;stack</a>
         </div>
 
         <div class="user-meta flex flex-end-center">
             <img class="user-meta__image flex-noshrink" src="{{q?.owner.profile_image}}" alt="{{q?.owner.display_name}}" height="32" width="32"
             />
             <div>
-                Asked by <a href="{{q?.owner.link}}" target="_blank">{{q?.owner.display_name}}</a>
+                Asked by <a href="{{q?.owner.link}}" target="_blank" rel="noopener">{{q?.owner.display_name}}</a>
                 <div>with {{q?.owner.reputation}} rep</div>
             </div>
         </div>

@@ -17,7 +17,7 @@
             <div class="user-meta flex flex-end-center">
                 <img class="user-meta__image flex-noshrink" [src]="question.owner.profileImage" alt="{{question.owner.displayName}}" />
                 <div>
-                    Asked by <a [href]="question.owner.link" target="_blank">{{question.owner.displayName}}</a>
+                    Asked by <a [href]="question.owner.link" target="_blank" rel="noopener">{{question.owner.displayName}}</a>
                     <div>with {{question.owner.reputation || 0}} rep</div>
                 </div>
             </div>

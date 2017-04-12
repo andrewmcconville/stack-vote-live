@@ -7,7 +7,7 @@
             <div class="card__meta flex flex-end-center">
                 <img class="card__meta-image" [src]="question.owner.profile_image" alt="{{question.owner.display_name}}" />
                 <div>
-                    Asked by <a [href]="question.owner.link" target="_blank">{{question.owner.display_name}}</a>
+                    Asked by <a [href]="question.owner.link" target="_blank" rel="noopener">{{question.owner.display_name}}</a>
                     <div>with {{question.owner.reputation}} rep</div>
                 </div>
             </div>

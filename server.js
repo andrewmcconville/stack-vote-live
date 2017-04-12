@@ -29,7 +29,7 @@ app.use('*', function (req, res, next) {
         res.redirect('https://' + req.hostname + req.url);
     }
     else {
-        //res.sendFile(path.join(__dirname + '/dist/index.html'));
-        next();
+        res.sendFile(path.join(__dirname + '/dist/index.html'));
+        //next();
     }
 });

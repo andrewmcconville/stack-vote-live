@@ -26,9 +26,9 @@ app.listen(process.env.PORT || 8080);
 
 app.get('*', function (req, res) {
     if (req.headers['x-forwarded-proto'] != 'https') {
-        res.redirect('https://stackvotelive.herokuapp.com//dist/index.html');
+        res.redirect('https://stackvotelive.herokuapp.com/dist/index.html');
     }
     else {
-        res.sendFile('https://stackvotelive.herokuapp.com//dist/index.html');
+        res.sendFile('https://stackvotelive.herokuapp.com/dist/index.html');
     }
 });

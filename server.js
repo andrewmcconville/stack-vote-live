@@ -2,13 +2,13 @@
 const compress = require('compression');
 const express = require('express');
 const app = express();
-const path = require('path');
+//const path = require('path');
 
 // activate gzip
 app.use(compress());
 
 //send prerendered pages to bots
-app.use(require('prerender-node'));
+//app.use(require('prerender-node'));
 
 // Run the app by serving the static files
 // in the dist directory
@@ -20,6 +20,15 @@ app.listen(process.env.PORT || 8080);
 
 // For all GET requests, send back index.html
 // so that PathLocationStrategy can be used
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname + '/dist/index.html'));
+// app.get('/*', function (req, res) {
+//     res.sendFile(path.join(__dirname + '/dist/index.html'));
+// });
+
+app.get('*', function (req, res) {
+    if (req.headers['x-forwarded-proto'] != 'https') {
+        res.redirect('https://stackvotelive.herokuapp.com//dist/index.html');
+    }
+    else {
+        res.sendFile('https://stackvotelive.herokuapp.com//dist/index.html');
+    }
 });
